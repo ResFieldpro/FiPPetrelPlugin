@@ -1,0 +1,11 @@
+<Deployment>
+  <Files>
+    <File Name="FieldPROConnector.dll" />
+    <File Name="FieldPROConnector.pdb" />
+    <File Name="FieldPROConnector.Plugin_Manifest.xml" />
+    <File Name="ICSharpCode.SharpZipLib.dll" />
+    <File Name="Petrelwells.mig" />
+    <File Name="WebDataLoader.dll" />
+    <File Name="WebDataLoader.pdb" />
+  </Files>
+</Deployment>

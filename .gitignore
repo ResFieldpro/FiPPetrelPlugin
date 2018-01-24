@@ -6,6 +6,10 @@
 *.[Oo]bj
 *.user
 *.aps
+*.pdb
+*FileListAbsolute.txt
+*.resources
+*.cs.dll
 *.pch
 *.vspscc
 *.vssscc
@@ -25,11 +29,9 @@
 *.opensdf
 *.unsuccessfulbuild
 ipch/
-[Oo]bj/
-[Bb]in
-[Dd]ebug*/
-[Rr]elease*/
 Ankh.NoLoad
+
+[Cc]opytemp/
 
 #MonoDevelop
 *.pidb
