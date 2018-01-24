@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!--ProjectType:Plugin-->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78F5C007-FC50-4E17-A85D-9D9A7BD6CB57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FieldPROConnector</RootNamespace>
+    <AssemblyName>FieldPROConnector</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Slb.Ocean.Data, Version=2013.1.1.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Schlumberger\Petrel 2013\Extensions\Schlumberger\Production\Engine\Bin\Slb.Ocean.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel.Data.Persistence, Version=13.2.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Schlumberger\Petrel 2013\Public\Slb.Ocean.Petrel.Data.Persistence.dll</HintPath>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel.Global, Version=13.2.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Schlumberger\Petrel 2013\Public\Slb.Ocean.Petrel.Global.dll</HintPath>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel.UI.Controls, Version=13.1.0.0, Culture=neutral, PublicKeyToken=da9605198f529641, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Schlumberger\Petrel 2013\Public\Slb.Ocean.Petrel.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel.Well, Version=13.2.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Schlumberger\Petrel 2013\Public\Slb.Ocean.Petrel.Well.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="system.drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="system.windows.forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="Slb.Ocean.Core">
+      <Name>Slb.Ocean.Core</Name>
+      <HintPath>$(Ocean2013Home)\Public\Slb.Ocean.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel">
+      <Name>Slb.Ocean.Petrel</Name>
+      <HintPath>$(Ocean2013Home)\Public\Slb.Ocean.Petrel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Basics">
+      <Name>Slb.Ocean.Basics</Name>
+      <HintPath>$(Ocean2013Home)\Public\Slb.Ocean.Basics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Geometry">
+      <Name>Slb.Ocean.Geometry</Name>
+      <HintPath>$(Ocean2013Home)\Public\Slb.Ocean.Geometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WebDataLoader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\bin\Debug\WebDataLoader.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\Brokers\WellboreGroupBroker.cs" />
+    <Compile Include="App\Models\Domain\WellboreGroup.cs" />
+    <Compile Include="App\Models\Domain\WellboreTool.cs" />
+    <Compile Include="App\Models\Helpers\DBConfiguration.cs" />
+    <Compile Include="App\Models\Importers\WellCompletionImporter.cs" />
+    <Compile Include="App\Views\DBConfigurationDialogUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\Views\DBConfigurationDialogUI.designer.cs">
+      <DependentUpon>DBConfigurationDialogUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App\Models\Helpers\WebImporterWrapper.cs" />
+    <Compile Include="App\Views\FieldPROConnectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\Views\FieldPROConnectorDialog.Designer.cs">
+      <DependentUpon>FieldPROConnectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App\Views\FieldPROMenu.cs" />
+    <Compile Include="App\Views\ImportWellLogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="App\Views\ImportWellLogControl.Designer.cs">
+      <DependentUpon>ImportWellLogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App\Views\ImportWellsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="App\Views\ImportWellsControl.Designer.cs">
+      <DependentUpon>ImportWellsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App\Views\ImportProductionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="App\Views\ImportProductionControl.Designer.cs">
+      <DependentUpon>ImportProductionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Models\Domain\Well.cs" />
+    <Compile Include="App\Models\Domain\WellAllocation.cs" />
+    <Compile Include="App\Brokers\WellAllocationBroker.cs" />
+    <Compile Include="App\Brokers\WellBroker.cs" />
+    <Compile Include="App\Models\Domain\WellLogFile.cs" />
+    <Compile Include="App\Brokers\WellLogFileBroker.cs" />
+    <Compile Include="App\Models\Importers\WellLogImporter.cs" />
+    <Compile Include="App\Models\Importers\WellObservedDataImporter.cs" />
+    <Compile Include="App\Models\Domain\WellsCollection.cs" />
+    <Compile Include="App\Models\Importers\WellsImporter.cs" />
+    <Compile Include="App\Models\Domain\WellTrajectory.cs" />
+    <Compile Include="App\Brokers\WellTrajectoryBroker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App\Views\DBConfigurationDialogUI.resx">
+      <DependentUpon>DBConfigurationDialogUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Views\FieldPROConnectorDialog.resx">
+      <DependentUpon>FieldPROConnectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Views\ImportWellLogControl.resx">
+      <DependentUpon>ImportWellLogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Views\ImportWellsControl.resx">
+      <DependentUpon>ImportWellsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Views\ImportProductionControl.resx">
+      <DependentUpon>ImportProductionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FieldProIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fieldpro.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del "$(ProjectDir)plugin.xml"
+"%25Ocean2013Home%25\PluginPackager.exe" /g "$(TargetPath)" "$(ProjectDir)plugin.xml"
+"%25Ocean2013Home%25\PluginPackager.exe" /m "$(ProjectDir)plugin.xml" "%25Ocean2013Home%25\petrel.exe" "$(TargetDir)"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>
