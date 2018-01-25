@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Odbc;
 using WebDataLoader;
 using System.Data;
+using System.IO;
 
 namespace FieldPROConnector {
 	class WebImporterWrapper: WebImporter
@@ -32,9 +33,25 @@ namespace FieldPROConnector {
 		{
 			return base.LoadWells(WebServer, WebServerU, WebServerP);
 		}
-		public int UploadWells(string datafile, string migfile)
+        public static string AssemblyDirectory
+        {
+            get
+            {
+                string codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
+            }
+        }
+        public int UploadWells(string datafile)
 		{
-			return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
+            string migfile = AssemblyDirectory + "\\Petrelwells.mig";
+            return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
 		}
-	}
+        public int UploadTraj(string datafile)
+        {
+            string migfile = AssemblyDirectory + "\\Petreltraj.mig";
+            return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
+        }
+    }
 }

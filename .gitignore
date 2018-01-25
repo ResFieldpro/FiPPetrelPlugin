@@ -3,6 +3,7 @@
 *.DS_Store
 
 #Visual Studio files
+*.CopyComplete
 *.[Oo]bj
 *.user
 *.aps
@@ -30,6 +31,7 @@
 *.unsuccessfulbuild
 ipch/
 Ankh.NoLoad
+.vs/
 
 [Cc]opytemp/
 
@@ -42,6 +44,8 @@ _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 *.sass-cache
+
+Slb.Ocean.*
 
 #Project files
 [Bb]uild/
