@@ -58,12 +58,22 @@ namespace FieldPROConnector
         }
         public int UploadWells(string datafile)
         {
-            string migfile = AssemblyDirectory + "\\Petrelwells.mig";
+            string migfile = AssemblyDirectory + "\\PetrelWells.mig";
             return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
         }
         public int UploadTraj(string datafile)
         {
-            string migfile = AssemblyDirectory + "\\Petreltraj.mig";
+            string migfile = AssemblyDirectory + "\\PetrelTraj.mig";
+            return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
+        }
+        public int UploadMonthlyProduction(string datafile)
+        {
+            string migfile = AssemblyDirectory + "\\PetrelProductionMonthly.mig";
+            return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
+        }
+        public int UploadDailyProduction(string datafile)
+        {
+            string migfile = AssemblyDirectory + "\\PetrelProductionDaily.mig";
             return base.UploadData(WebServer, WebServerU, WebServerP, datafile, migfile);
         }
     }

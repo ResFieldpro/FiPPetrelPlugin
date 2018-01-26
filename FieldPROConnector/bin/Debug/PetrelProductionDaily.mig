@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<MigFile>
+	<FipVersion>2018.8d.342.7.100</FipVersion>
+	<MigFileVersion>1.0</MigFileVersion>
+	<MigFileScriptTypeBefore>2</MigFileScriptTypeBefore>
+	<MigFileScriptBefore>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Globalization;
+
+namespace PetrelScript
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			string strFolderToSearch = Directory.GetParent(System.Reflection.Assembly.GetEntryAssembly().Location).ToString() + "\\";
+			File.Delete(strFolderToSearch + "ProdDataD.txt");
+			File.Delete(strFolderToSearch + "Schema.ini");
+
+			string[] arrFiles = Directory.GetFiles(strFolderToSearch, @"*.txt");
+			if (arrFiles.Length &lt;= 0)
+				return;
+			string strSourceFile = arrFiles[0];
+
+			string strParsedFile = strFolderToSearch + "ProdDataD.txt";
+			File.Copy(strSourceFile, strParsedFile);
+
+			//Schema.ini
+			string strTemp, strFile = strFolderToSearch + "Schema.ini";
+			using (StreamWriter writer = new StreamWriter(strFile, false))
+			{
+				WriteCommonSchemaSection(writer, "ProdDataD.txt");
+				strTemp = "Col1=PROD_DATE Date";
+				writer.WriteLine(strTemp);
+				strTemp = "Col2=OIL_VOL Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col3=GAS_VOL Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col4=WATER_VOL Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col5=WATER_INJ Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col6=GAS_INJ Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col7=WATER_DISP Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col8=UPTIME Double";
+				writer.WriteLine(strTemp);
+				strTemp = "Col9=WELL_NAME Char Width 255";
+				writer.WriteLine(strTemp);
+				strTemp = "Col10=COMP_NAME Char Width 255";
+				writer.WriteLine(strTemp);
+			}
+			return;
+		}
+
+		public static void WriteCommonSchemaSection(StreamWriter writer, string strFileSection)
+		{
+			string strTemp = "[" + strFileSection + "]";
+			writer.WriteLine(strTemp);
+			strTemp = "ColNameHeader=True";
+			writer.WriteLine(strTemp);
+			strTemp = "Format=TabDelimited";
+			writer.WriteLine(strTemp);
+			strTemp = "MaxScanRows=25";
+			writer.WriteLine(strTemp);
+			strTemp = "CharacterSet=ANSI";
+			writer.WriteLine(strTemp);
+			strTemp = "DateTimeFormat=DD.MM.YYYY";
+			writer.WriteLine(strTemp);
+			strTemp = "DecimalSymbol=.";
+			writer.WriteLine(strTemp);
+		}
+	}
+}
+</MigFileScriptBefore>
+	<Queries>
+		<Query>
+			<ObjectName>objScProductionInstance</ObjectName>
+			<QueryStep>1</QueryStep>
+			<QueryType>7</QueryType>
+			<QueryComment>
+			</QueryComment>
+			<QueryStartTag>select</QueryStartTag>
+			<QueryItems>
+				<QueryItem>
+					<QueryItemString>PROD_DATE</QueryItemString>
+					<QueryItemOrder>1</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>OIL_VOL</QueryItemString>
+					<QueryItemOrder>2</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>GAS_VOL</QueryItemString>
+					<QueryItemOrder>3</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>WATER_VOL</QueryItemString>
+					<QueryItemOrder>4</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>UPTIME</QueryItemString>
+					<QueryItemOrder>5</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>WELL_NAME</QueryItemString>
+					<QueryItemOrder>6</QueryItemOrder>
+				</QueryItem>
+				<QueryItem>
+					<QueryItemString>COMP_NAME</QueryItemString>
+					<QueryItemOrder>7</QueryItemOrder>
+				</QueryItem>
+			</QueryItems>
+			<QueryEndTag>from ProdDataD.txt</QueryEndTag>
+			<QueryOptions>
+				<QueryOption>
+					<QueryOptionID>200001</QueryOptionID>
+					<QueryOptionValue>#%s7#%</QueryOptionValue>
+				</QueryOption>
+				<QueryOption>
+					<QueryOptionID>200004</QueryOptionID>
+					<QueryOptionValue>yes</QueryOptionValue>
+				</QueryOption>
+				<QueryOption>
+					<QueryOptionID>200005</QueryOptionID>
+					<QueryOptionValue>6</QueryOptionValue>
+				</QueryOption>
+				<QueryOption>
+					<QueryOptionID>200077</QueryOptionID>
+					<QueryOptionValue>1</QueryOptionValue>
+				</QueryOption>
+				<QueryOption>
+					<QueryOptionID>200100</QueryOptionID>
+					<QueryOptionValue>1</QueryOptionValue>
+				</QueryOption>
+				<QueryOption>
+					<QueryOptionID>200123</QueryOptionID>
+					<QueryOptionValue>1</QueryOptionValue>
+				</QueryOption>
+			</QueryOptions>
+			<QueryParameters>
+				<QueryParameter>
+					<ParameterQueryItemKey>1</ParameterQueryItemKey>
+					<ParameterID>32001</ParameterID>
+					<ParameterDestObject>objGrWellDailyData</ParameterDestObject>
+					<ParameterDestPROPID>propCommonPorProDate</ParameterDestPROPID>
+				</QueryParameter>
+				<QueryParameter>
+					<ParameterQueryItemKey>5</ParameterQueryItemKey>
+					<ParameterID>32002</ParameterID>
+					<ParameterDestObject>objGrWellDailyData</ParameterDestObject>
+					<ParameterDestPROPID>propPPGathDD_ProdTimeOnStream</ParameterDestPROPID>
+				</QueryParameter>
+				<QueryParameter>
+					<ParameterQueryItemKey>2</ParameterQueryItemKey>
+					<ParameterID>32003</ParameterID>
+					<ParameterDestObject>objGrWellDailyData</ParameterDestObject>
+					<ParameterDestPROPID>propPP_AllocatedOil</ParameterDestPROPID>
+				</QueryParameter>
+				<QueryParameter>
+					<ParameterQueryItemKey>3</ParameterQueryItemKey>
+					<ParameterID>32004</ParameterID>
+					<ParameterDestObject>objGrWellDailyData</ParameterDestObject>
+					<ParameterDestPROPID>propPP_AllocatedRawGas</ParameterDestPROPID>
+				</QueryParameter>
+				<QueryParameter>
+					<ParameterQueryItemKey>4</ParameterQueryItemKey>
+					<ParameterID>32005</ParameterID>
+					<ParameterDestObject>objGrWellDailyData</ParameterDestObject>
+					<ParameterDestPROPID>propPP_AllocatedWater</ParameterDestPROPID>
+				</QueryParameter>
+				<QueryParameter>
+					<ParameterQueryItemKey>6</ParameterQueryItemKey>
+					<ParameterID>32006</ParameterID>
+					<ParameterDestObject>objWell</ParameterDestObject>
+					<ParameterDestPROPID>prop_WellName</ParameterDestPROPID>
+				</QueryParameter>
+			</QueryParameters>
+			<DirectSQLs/>
+			<QueryReferences/>
+		</Query>
+	</Queries>
+</MigFile>
