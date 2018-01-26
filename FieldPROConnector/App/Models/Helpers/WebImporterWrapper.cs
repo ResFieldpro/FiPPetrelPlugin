@@ -46,6 +46,10 @@ namespace FieldPROConnector
             return base.LoadDailyProduction(WebServer, WebServerU, WebServerP, uwi);
         }
         //uploaders:
+        public TaskStatus GetImportStatus(int id)
+        {
+            return base.GetImportStatus(WebServer, WebServerU, WebServerP, id);
+        }
         public static string AssemblyDirectory
         {
             get
