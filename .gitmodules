@@ -1,0 +1,3 @@
+[submodule "WebDataLoader"]
+	path = WebDataLoader
+	url = https://github.com/ResFieldpro/WebDataLoader
