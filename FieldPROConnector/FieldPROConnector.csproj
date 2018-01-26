@@ -80,10 +80,6 @@
       <HintPath>$(Ocean2013Home)\Public\Slb.Ocean.Geometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="WebDataLoader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\bin\Debug\WebDataLoader.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Brokers\WellboreGroupBroker.cs" />
@@ -187,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="fieldpro.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebDataLoader\WebDataLoader.csproj">
+      <Project>{82d00084-fa11-4bb5-b009-5822a382505e}</Project>
+      <Name>WebDataLoader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

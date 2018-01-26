@@ -72,3 +72,4 @@ packages/
 
 #Test files
 *.testsettings
+*.force

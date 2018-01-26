@@ -17,9 +17,6 @@ namespace FieldPROConnector
         public double DisposalInjection { get; set; }
         public double EffectiveTime { get; set; }
 
-        /**
-         * Zero arguments constructor.
-         */
         public WellAllocation()
         {
             OperativeDate = DateTime.Now;
@@ -35,22 +32,14 @@ namespace FieldPROConnector
         public static WellAllocationBroker Broker(Frequency f) {
             return new WellAllocationBroker(WebConfiguration.Current, f);
         }
-
-
         public double Oil_Bbls { set { Oil = ConvertBblsToM3(value); } }
-
         public double Gas_Mscf { set { Gas = ConvertMscfToM3(value); } }
-
         public double Water_Bbls { set { Water = ConvertBblsToM3(value); } }
-
         public double WaterInjection_Bbls { set { WaterInjection = ConvertBblsToM3(value); } }
-
         public double DisposalInjection_Bbls { set { DisposalInjection = ConvertBblsToM3(value); } }
-
         private double ConvertBblsToM3(double value) {
             return value * 0.15899;
         }
-
         private double ConvertMscfToM3(double value) {
             return value * 0.028317 * 1000;
         }

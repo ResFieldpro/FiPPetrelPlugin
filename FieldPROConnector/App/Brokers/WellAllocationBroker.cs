@@ -11,7 +11,6 @@ namespace FieldPROConnector
 {
     class WellAllocationBroker
     {
-
         private WebConfiguration dcInfo;
         private Frequency frequency;
 
@@ -20,14 +19,21 @@ namespace FieldPROConnector
             this.dcInfo = config;
             this.frequency = frequency;
         }
-
         public List<WellAllocation> GetAll(string uwi, DateTime start, DateTime end)
         {
             List<WellAllocation> allocations = new List<WellAllocation>();
-            WebImporter wi = new WebImporter();
+            WebImporterWrapper wi = new WebImporterWrapper(dcInfo);
             try
             {
-                DataTable dt = wi.LoadDailyProduction(dcInfo.WebServer, dcInfo.WebServerU, dcInfo.WebServerP, uwi);
+                DataTable dt;
+                if (frequency == Frequency.Daily)
+                {
+                    dt = wi.LoadDailyProduction(uwi);
+                }
+                else
+                {
+                    dt = wi.LoadMonthlyProduction(uwi);
+                }
                 foreach (DataRow dr in dt.Rows)
                 {
                     var w = this.WellAllocationFromRow(dr);
@@ -40,7 +46,6 @@ namespace FieldPROConnector
             }
             return allocations;
         }
-
         private WellAllocation WellAllocationFromRow(DataRow r)
         {
             WellAllocation alloc = new WellAllocation();
@@ -48,10 +53,12 @@ namespace FieldPROConnector
             var dbOil = r["OIL"]; // In bbls
             var dbGas = r["GAS"]; // In Mscf
             var dbWater = r["WATER"]; // In bbls
+            var dUptime = r["UPTIME"];
 
             alloc.Oil_Bbls = DBNull.Value.Equals(dbOil) ? 0.0 : double.Parse(dbOil.ToString());
             alloc.Gas_Mscf = DBNull.Value.Equals(dbGas) ? 0.0 : double.Parse(dbGas.ToString());
             alloc.Water_Bbls = DBNull.Value.Equals(dbWater) ? 0.0 : double.Parse(dbWater.ToString());
+            alloc.EffectiveTime = DBNull.Value.Equals(dUptime) ? 0.0 : double.Parse(dUptime.ToString());
 
             return alloc;
         }
